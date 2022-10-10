@@ -1,0 +1,16 @@
+
+--------------------------Question On CSV---------------------------
+
+1.Find the longest movie name
+2.Find No. of movies got 10 * rating
+3.How many industry are therier 
+4.Find least liked comedy movie name
+5.Longest english movie
+6.What is genre of Instersteller
+7.What is avg duration of eacj genre
+8.Whau is avg rating of each industry
+9.Find avg rting of romantic movie industry wise
+10.List down all the english movie with their repectively desending rating
+----------------------------------------------------------------------------
+
+
