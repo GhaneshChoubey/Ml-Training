@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import tkinter as ttk
 
-data=pd.read_csv("treadmil-users.csv")
+data=pd.read_csv(r"day20/treadmil-users.csv")
 
 app = ttk.Tk()
 app.geometry("600x300")
@@ -44,7 +44,10 @@ ttk.OptionMenu(app,col3,*values).place(x=150,y=180)
 
 
 def show():
-    print(col1.get(),col2.get(),col3.get())
+    fig=plt.figure(figsize=(5,2))
+    eval(graphs.get())
+    plt.show()
+    #print(col1.get(),col2.get(),col3.get())
 
 ttk.Button(app,text="show",command=show).place(x=400,y=10)
 
