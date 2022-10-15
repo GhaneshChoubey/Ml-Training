@@ -1,7 +1,12 @@
+import csv
+import imp
+from venv import create
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import tkinter as ttk
+from PIL import ImageTk,Image
+
 
 data=pd.read_csv(r"day20/treadmil-users.csv")
 
@@ -13,6 +18,7 @@ graphs = ttk.Variable(app)
 values = {
     "Pair Plot":"sns.pairplot(data=data)",
     "Joint Plot":"sns.jointplot(data=data,x='{col1}',y='{col2}')",
+    "Bar Plot":"sns.barplot(data=data,x='{col1}',y='{col2}')",
     "Bar Plot":"sns.barplot(data=data,x='{col1}',y='{col2}')"
     }
 
@@ -42,11 +48,28 @@ col3.set(values[0])
 ttk.Label(app,text="Column 3").place(x=150,y=150)
 ttk.OptionMenu(app,col3,*values).place(x=150,y=180)
 
+#Canvas
+
+cnv=ttk.Canvas(app,width=200,height=200)
+cnv.place(x=200,y=100)
 
 def show():
+    global img
+    global cnv
+    column1=col1.get()
+    column2=col2.get()
+    column3=col3.get()
+    
     fig=plt.figure(figsize=(5,2))
-    eval(graphs.get())
-    plt.show()
+    eval(graphs.get().format(col1=column1,col2=column2,col3=column3))
+    fig.savefig('graph.png')
+    img=ImageTk.PhotoImage(Image.open('graph.png').resize((250,200)))
+
+    
+    cnv.create_image(0,0,anchor=ttk.NW,image=img)
+
+
+    #plt.show()
     #print(col1.get(),col2.get(),col3.get())
 
 ttk.Button(app,text="show",command=show).place(x=400,y=10)
