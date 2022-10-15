@@ -53,12 +53,33 @@ ttk.OptionMenu(app,col3,*values).place(x=150,y=180)
 cnv=ttk.Canvas(app,width=200,height=200)
 cnv.place(x=200,y=100)
 
+#Label
+result=ttk.Variable(app)
+ttk.Label(app,textvariable=result).place(x=300,y=300)
+
 def show():
     global img
-    global cnv
+    global cnv 
+
     column1=col1.get()
     column2=col2.get()
     column3=col3.get()
+    
+    g=graphs.get()
+    if 'col1' in g:
+        if column1 =='Select':
+            result.set('Column 1 must be selected')
+            return
+    if 'col21' in g:
+        if column2 =='Select':
+            result.set('Column 2 must be selected')
+            return
+    if 'col3' in g:
+        if column3 =='Select':
+            result.set('Column 3 must be selected')
+            return
+
+
     
     fig=plt.figure(figsize=(5,2))
     eval(graphs.get().format(col1=column1,col2=column2,col3=column3))
